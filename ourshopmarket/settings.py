@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    'ckeditor',
     'ckeditor_uploader',
 
     # Our Apps
@@ -86,7 +87,7 @@ DATABASES = {
 }
 
 # Обязательно пишем что мы переопределили Юзера
-AUTH_USER_MODEL = 'user.CustomUser'
+AUTH_USER_MODEL = 'account.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -139,6 +140,14 @@ EMAIL_HOST_USER = config('EMAIL_USER')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+# Добавляем настройки редактора
+CKEDITOR_CONFIGS = {
+    'default': {
+     'toolbar': 'None'
+    },
+}
 
 # Тут указываем что мы будем использовать JWT авторизацию
 REST_FRAMEWORK = {
