@@ -12,6 +12,6 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
-    serializer_class =  serializers.ProductSerializer
+    serializer_class = serializers.ProductSerializer
     permission_classes = (permissions.IsAuthenticated, )
     pagination_class = StandardResultsSetPagination # чтобы разбить по страницам
