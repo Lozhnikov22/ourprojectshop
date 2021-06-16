@@ -16,6 +16,5 @@ class Product(models.Model):
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
 
-
     def __str__(self):
         return self.title
