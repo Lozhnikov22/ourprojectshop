@@ -1,4 +1,4 @@
-from requests import Response
+from django.db.models import Q
 from rest_framework import generics, permissions
 from rest_framework.pagination import PageNumberPagination
 
@@ -44,3 +44,21 @@ class ProductImageView(generics.ListAPIView):
 
     def get_serializer_context(self):
         return {'request': self.request}
+
+class ProductUpdateView(generics.UpdateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = serializers.ProductSerializer
+    permission_classes = (permissions.IsAdminUser,)
+
+
+class ProductFilterView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = serializers.ProductSerializer
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+                Q(title__icontains=query) | Q(price__icontains=query)
+            )
+        return object_list
+

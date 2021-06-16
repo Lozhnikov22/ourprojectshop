@@ -11,8 +11,10 @@ class Product(models.Model):
     description = RichTextField()
     quantity = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=False)
-    # image = models.ImageField(blank=True, null=True, upload_to='products')
 
+
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -25,3 +27,4 @@ class ProductImages(models.Model):
     class Meta:
         verbose_name = 'image'
         verbose_name_plural = 'images'
+

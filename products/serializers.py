@@ -1,6 +1,10 @@
 from rest_framework import serializers
 
+
 from products.models import Product, ProductImages
+from comments.serializers import FeedbackSerializer
+from products.models import Product
+
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -30,8 +34,10 @@ class ProductSerializer(serializers.ModelSerializer):
             instance)  # подтягиваем родительский метод и добавляем свою переменную
         #  и так в instance  сейчас хранится Post,  чтобы вытащить все картинки этого поста
         # мы можем обратиться через related_name = 'images'  типа Post.images.all()
+
         representation['images'] = ProductImageSerializer(instance.images.all(), many=True, context=self.context).data
-        return representation
+        representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True, context=self.context).data
+        return representation, representation2
 
 
 class ProductImageSerializer(serializers.ModelSerializer):
