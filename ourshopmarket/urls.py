@@ -1,5 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+
+from ourshopmarket.views import ProductImageViewSet
+
+router = routers.SimpleRouter()
+router.register('post_images', ProductImageViewSet)
+
 
 urlpatterns = [
     path(r'^ckeditor/', include('ckeditor_uploader.urls')),

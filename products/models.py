@@ -12,8 +12,19 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=False)
 
+
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
+
+
+class ProductImages(models.Model):
+    image = models.ImageField(upload_to='products', blank=True, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+
+    class Meta:
+        verbose_name = 'image'
+        verbose_name_plural = 'images'
+

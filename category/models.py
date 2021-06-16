@@ -18,4 +18,4 @@ class Category(models.Model):
     # Меняем имена в админке, для правильного отображения
     class Meta:
         verbose_name = 'category'  # пишет в единственном числе
-        verbose_name_plural = 'categoryes'  # пишет во множественном числе
+        verbose_name_plural = 'categories'  # пишет во множественном числе
