@@ -13,6 +13,9 @@ class Product(models.Model):
     available = models.BooleanField(default=False)
     image = models.ImageField(blank=True, null=True, upload_to='products')
 
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
+
 
     def __str__(self):
         return self.title
