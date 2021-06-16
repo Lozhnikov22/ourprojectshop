@@ -3,7 +3,8 @@ from rest_framework import generics, permissions
 from rest_framework.pagination import PageNumberPagination
 
 from . import serializers
-from .models import Product
+from .models import Product, ProductImages
+from .serializers import ProductImageSerializer
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -36,3 +37,10 @@ class ProductDestroyView(generics.DestroyAPIView):
     serializer_class = serializers.ProductSerializer
     permission_classes = (permissions.IsAdminUser,)
 
+
+class ProductImageView(generics.ListAPIView):
+    queryset = ProductImages.objects.all()
+    serializer_class = ProductImageSerializer
+
+    def get_serializer_context(self):
+        return {'request': self.request}

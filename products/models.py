@@ -11,8 +11,17 @@ class Product(models.Model):
     description = RichTextField()
     quantity = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=False)
-    image = models.ImageField(blank=True, null=True, upload_to='products')
+    # image = models.ImageField(blank=True, null=True, upload_to='products')
 
 
     def __str__(self):
         return self.title
+
+
+class ProductImages(models.Model):
+    image = models.ImageField(upload_to='products', blank=True, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+
+    class Meta:
+        verbose_name = 'image'
+        verbose_name_plural = 'images'

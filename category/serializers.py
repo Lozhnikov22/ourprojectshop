@@ -6,7 +6,7 @@ from category.models import Category
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('id', 'name', 'parent',)
+        fields = '__all__'
 
     # Переопределяем метод to_representation для вывода подкатегорий
     def to_representation(self, instance):
