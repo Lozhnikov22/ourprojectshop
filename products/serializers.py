@@ -36,8 +36,8 @@ class ProductSerializer(serializers.ModelSerializer):
         # мы можем обратиться через related_name = 'images'  типа Post.images.all()
 
         representation['images'] = ProductImageSerializer(instance.images.all(), many=True, context=self.context).data
-        representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True, context=self.context).data
-        return representation, representation2
+        # representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True, context=self.context).data
+        return representation
 
 
 class ProductImageSerializer(serializers.ModelSerializer):
