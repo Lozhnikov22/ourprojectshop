@@ -61,4 +61,3 @@ class ProductFilterView(generics.ListAPIView):
                 Q(title__icontains=query) | Q(price__icontains=query)
             )
         return object_list
-

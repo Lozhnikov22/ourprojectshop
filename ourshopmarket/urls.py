@@ -16,4 +16,5 @@ urlpatterns = [
     path('api/v1/products/', include('products.urls')),
     path('api/v1/products/like/', include('like.urls')),
     path('api/v1/feedbacks/', include('comments.urls')),
+    path('api/v1/cart/', include('cart.urls')),
 ]

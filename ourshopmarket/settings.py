@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     # Our Apps
 
     'account',
-    'basket',
+    'cart',
     'like',
     'category',
     'comments',
@@ -85,6 +85,9 @@ DATABASES = {
 
     }
 }
+
+# Прописываем ключ который будет использоваться для хранения корзины в сессии пользователя
+CART_SESSION_ID = 'cart'
 
 # Обязательно пишем что мы переопределили Юзера
 AUTH_USER_MODEL = 'account.CustomUser'
