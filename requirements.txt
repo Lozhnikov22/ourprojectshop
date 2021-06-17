@@ -1,9 +1,10 @@
-Django
-djangorestframework
+Django~=3.2.4
+djangorestframework~=3.12.4
 djangorestframework-simplejwt
 django_filter
 pillow
 psycopg2-binary
 drf-yasg
-django-ckeditor
+django-ckeditor~=6.1.0
 python-decouple
+django-core

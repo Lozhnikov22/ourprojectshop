@@ -19,3 +19,4 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'category'  # пишет в единственном числе
         verbose_name_plural = 'categories'  # пишет во множественном числе
+

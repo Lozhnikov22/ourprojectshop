@@ -1,10 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from django.db import models
 from account.models import CustomUser
 from products.models import Product
-
-
+User = get_user_model()
 class CartManger(models.Manager):
     def get_or_new(self, request):
         user = request.user
@@ -24,7 +24,7 @@ class CartManger(models.Manager):
 
 
 class Cart(models.Model):
-    user = models.OneToOneField(CustomUser, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     objects = CartManger()
 
 

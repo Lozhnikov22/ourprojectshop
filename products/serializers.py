@@ -6,7 +6,6 @@ from comments.serializers import FeedbackSerializer
 from products.models import Product
 
 
-
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -32,12 +31,12 @@ class ProductSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):  # он отвечает за то в каком виде возвращается Response
         representation = super().to_representation(
             instance)  # подтягиваем родительский метод и добавляем свою переменную
-        #  и так в instance  сейчас хранится Post,  чтобы вытащить все картинки этого поста
-        # мы можем обратиться через related_name = 'images'  типа Post.images.all()
+        #  и так в instance  сейчас хранится Product,  чтобы вытащить все картинки этого поста
+        # мы можем обратиться через related_name = 'images'  типа Product.images.all()
 
         representation['images'] = ProductImageSerializer(instance.images.all(), many=True, context=self.context).data
-        representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True, context=self.context).data
-        return representation, representation2
+        # representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True, context=self.context).data
+        return representation
 
 
 class ProductImageSerializer(serializers.ModelSerializer):

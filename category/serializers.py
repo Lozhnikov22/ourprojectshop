@@ -18,4 +18,4 @@ class CategorySerializer(serializers.ModelSerializer):
             # тут у нас рекурсия которая вызвает сама себя каждый раз и подставляет категорию чилдрен
             representation['children'] = CategorySerializer(instance=instance.children.all(), many=True).data
         return representation
-      
+
