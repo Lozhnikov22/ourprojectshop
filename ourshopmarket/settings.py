@@ -200,14 +200,3 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False
 }
 
-SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
-      'Token': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header',
-      }
-   },
-    'USE_SESSION_AUTH': False
-}
-

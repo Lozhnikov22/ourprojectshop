@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers, permissions
@@ -8,7 +10,6 @@ from ourshopmarket.views import ProductImageViewSet
 
 router = routers.SimpleRouter()
 router.register('post_images', ProductImageViewSet)
-
 
 schema_view = get_schema_view(
     info=openapi.Info(
@@ -36,3 +37,5 @@ urlpatterns = [
     path('api/v1/feedbacks/', include('comments.urls')),
     path('api/v1/cart/', include('cart.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
