@@ -15,7 +15,6 @@ class CartDetailView(RetrieveUpdateDestroyAPIView):
         queryset = Cart.objects.get_or_new(request)
 
         serializer = CartSerializers(queryset, context={'request': request})
-        print(serializer)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 

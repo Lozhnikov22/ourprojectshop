@@ -1,10 +1,8 @@
 from rest_framework import serializers
 
-
 from products.models import Product, ProductImages
 from comments.serializers import FeedbackSerializer
 from products.models import Product
-
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -36,7 +34,8 @@ class ProductSerializer(serializers.ModelSerializer):
         # мы можем обратиться через related_name = 'images'  типа Post.images.all()
 
         representation['images'] = ProductImageSerializer(instance.images.all(), many=True, context=self.context).data
-        # representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True, context=self.context).data
+        # representation2['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True,
+        # context=self.context).data
         return representation
 
 
@@ -60,3 +59,15 @@ class ProductImageSerializer(serializers.ModelSerializer):
         representation['image'] = self._get_image_url(instance)
         return representation
 
+
+class ProductFeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ('id', 'title')
+
+    def to_representation(self, instance):
+        representation = super().to_representation(
+            instance)
+        representation['feedbacks'] = FeedbackSerializer(instance.feedbacks.all(), many=True,
+                                                         context=self.context).data
+        return representation

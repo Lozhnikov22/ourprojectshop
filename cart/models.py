@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.http import HttpResponse
 
 from products.models import Product
 
@@ -11,14 +12,17 @@ class CartManger(models.Manager):
         user = request.user  # вытаскиваем юзера который делает запрос
         cart_id = request.session.get('cart_id', None)
         if user is not None and user.is_authenticated:
-            if user.cart:
-                cart_obj = request.user.cart  # выводит корзину нашего user, если он зареган
+            try:
+                if user.cart:
+                    cart_obj = request.user.cart  # выводит корзину нашего user, если он зареган
 
-            else:
-                cart_obj = Cart.objects.get(pk=cart_id)
-                cart_obj.user = user
-                cart_obj.save()  # добавляет объект в корзину
-            return cart_obj
+                else:
+                    cart_obj = Cart.objects.get(pk=cart_id)
+                    cart_obj.user = user
+                    cart_obj.save()  # добавляет объект в корзину
+                return cart_obj
+            except:
+                 HttpResponse("Ваша корзина пуста!")
         else:
             cart_obj = Cart.objects.get_or_create(pk=cart_id)
             cart_id = request.session['cart_id'] = cart_obj[0].id
