@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 from account.models import CustomUser
 from products.models import Product
+
 User = get_user_model()
 
 class Feedback(models.Model):

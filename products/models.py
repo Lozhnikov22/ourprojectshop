@@ -12,7 +12,6 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     available = models.BooleanField(default=False)
 
-
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
 
@@ -27,4 +26,3 @@ class ProductImages(models.Model):
     class Meta:
         verbose_name = 'image'
         verbose_name_plural = 'images'
-

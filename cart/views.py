@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
 from rest_framework import status
+
+from products.models import Product
 from .models import Cart, CartItem
 from .serializers import CartItemSerializers, CartSerializers
 from rest_framework.response import Response
-from products.models import Product
 
 
 class CartDetailView(RetrieveUpdateDestroyAPIView):
@@ -14,6 +14,8 @@ class CartDetailView(RetrieveUpdateDestroyAPIView):
     def retrieve(self, request, *args, **kwargs):
         queryset = Cart.objects.get_or_new(request)
         serializer = CartSerializers(queryset, context={'request': request})
+        print(serializer)
+
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
@@ -29,7 +31,8 @@ class CartItemView(CreateAPIView):
             if item.product_item == product_item:
                 return Response(data={'message': 'The product is already in the cart'},
                                 status=status.HTTP_400_BAD_REQUEST)
-            if product_item.stock == 0 or int(request.data['amount']) > product_item.stock:
+            if product_item.quantity == 0 or int(request.data['amount']) > product_item.quantity:
+
                 return Response(data={'message': 'No enough stock'}, status=status.HTTP_400_BAD_REQUEST)
         return self.create(request, *args, **kwargs)
 

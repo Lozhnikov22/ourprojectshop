@@ -89,6 +89,9 @@ DATABASES = {
     }
 }
 
+# Прописываем ключ который будет использоваться для хранения корзины в сессии пользователя
+CART_SESSION_ID = 'cart'
+
 # Обязательно пишем что мы переопределили Юзера
 AUTH_USER_MODEL = 'account.CustomUser'
 
@@ -197,41 +200,14 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False
 }
 
-# SOCIAL_AUTH_POSTGRES_JSONFIELD = True
-#
-#
-# AUTHENTICATION_BACKENDS = [
-#     'social_auth.backends.facebook.FacebookBackend',
-#     'social_auth.backends.contrib.vk.VKOAuth2Backend',
-#     'social_auth.backends.google.GoogleOAuth2Backend',
-#     'django.contrib.auth.backends.ModelBackend',
-# ]
-#
-
-# Настройки для Facebook
-FACEBOOK_APP_ID = 'app_id'
-FACEBOOK_API_SECRET = 'secret_token'
-
-# Настройки для Вконтакте
-VK_APP_ID = 'app_id'
-VKONTAKTE_APP_ID = VK_APP_ID
-VK_API_SECRET = 'key_api_secret'
-VKONTAKTE_APP_SECRET = VK_API_SECRET
-
-# Настройки для Google
-GOOGLE_OAUTH2_CLIENT_ID = '123456789.apps.googleusercontent.com'
-GOOGLE_OAUTH2_CLIENT_SECRET = 'key_secert'
-
-
-# SOCIAL_AUTH_PIPELINE = [
-#     'social_core.pipeline.social_auth.social_details',
-#     'social_core.pipeline.social_auth.social_uid',
-#     'social_core.pipeline.social_auth.social_user',
-#     'social_core.pipeline.user.get_username',
-#     'social_core.pipeline.social_auth.associate_by_email',
-#     'social_core.pipeline.user.create_user',
-#     'social_core.pipeline.social_auth.associate_user',
-#     'social_core.pipeline.social_auth.load_extra_data',
-#     'social_core.pipeline.user.user_details',
-# ]
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+      }
+   },
+    'USE_SESSION_AUTH': False
+}
 
