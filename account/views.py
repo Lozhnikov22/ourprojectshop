@@ -40,7 +40,7 @@ class ActivationView(APIView):
             user.save()
             # в Response  передаем json
             return Response({'msg': 'Successfully activated'}, status=status.HTTP_200_OK)
-        # если он второй раз перейдет по той ссылке котороую мы егму отправили то выйдет ниже прописанное
+        # если он второй раз перейдет по той ссылке котороую мы ему отправили то выйдет ниже прописанное
         except User.DoesNotExist:
             return Response({'msg': 'Link expired'}, status=status.HTTP_201_CREATED)
 

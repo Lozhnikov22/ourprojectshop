@@ -15,7 +15,7 @@ schema_view = get_schema_view(
     info=openapi.Info(
         title="SHOP MARKET",
         default_version='v1',
-        description='this is test shop market project',
+        description='this is our shop market project',
         terms_of_service='http://www.google.com/policies/terms/',
         contact=openapi.Contact(email='test@gmail.com'),
         license=openapi.License(name='BSD License'),
